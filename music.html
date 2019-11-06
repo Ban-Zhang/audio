@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>音乐</title>
+  <style>
+  #son{
+    position:relative;
+    top:5%;
+    width:70%;
+    height:50%;
+    box-shadow: 0px 0px 20px 5px #66CCFF;
+    margin:0 auto;
+  }
+  .bt{
+    position:absolute;
+    bottom:0px;
+    width:2%;
+    height:25%;
+    background-color: blue;
+    transition: .4s;
+  }
+  </style>
+</head>
+<body>
+    <div id="box">
+       <audio src="./music/qiufo.mp3"  autoplay="autoplay" loop >你的浏览器不支持</audio>
+       <audio src="./music/qiufo.wav"  autoplay="autoplay" loop >你的浏览器不支持</audio>
+       <audio src="./music/qiufo.ogg"  autoplay="autoplay" loop >你的浏览器不支持</audio>
+       <div id="son">
+       </div>
+    </div>
+    <script>
+     var Oson = document.getElementById('son');
+     var Obox = document.getElementById('box');
+     var wid = document.documentElement.clientWidth;
+     var hei = document.documentElement.clientHeight;
+     Obox.style.cssText = "width:"+wid+"px;height:"+hei+"px;background:url(./images/music.jpg) no-repeat;background-size:"+wid+"px "+hei+"px";
+
+     var Acolor = ["#FF66CC","#FF667F","#FF66CC","#FFE666","#CCFF66","#7FFF66","#66FF99","#66FFE6","#66CCFF","#CC3399","#4DCC33","#334DCC","#B333CC","#E495CA","#29B8FF","#FFE666","#FF667F"];
+     var length = Acolor.length;
+          for(var i = 0; i<21; i++){
+            var div = document.createElement("div");
+            div.className = "bt";
+            div.style.left = (i*4.9)+"%";
+            Oson.appendChild(div);
+            
+          }
+
+      var Adiv = Oson.querySelectorAll("div");
+      var len = Adiv.length;
+      var timer = setInterval(function(){
+        for(var i = 0; i<len; i++){
+          var h = Math.floor(Math.random()*30 + Math.random()*30 + Math.random()*30);
+          var c1 = Math.floor(Math.random()*length);
+          var c2 = Math.floor(Math.random()*length);
+           Adiv[i].style.height = h + "%";
+           if(c1 !== c2){
+            Adiv[i].style.background = "linear-gradient("+Acolor[c1]+","+Acolor[c2]+")";
+           }        
+        }
+      },400);
+    </script>
+</body>
+</html>
